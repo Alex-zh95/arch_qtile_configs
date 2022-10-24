@@ -1,0 +1,57 @@
+items:
+  - colors:
+      name: Nudge
+      author: ""
+      primary:
+        background: "#000000"
+        foreground: "#ffffff"
+      cursor:
+        text: "#000000"
+        cursor: "#ffffff"
+      normal:
+        black: "#658280"
+        red: "#822f5d"
+        green: "#184a31"
+        yellow: "#9d4500"
+        blue: "#304465"
+        magenta: "#330801"
+        cyan: "#175552"
+        white: "#110005"
+      bright:
+        black: "#8ca8a6"
+        red: "#a24b76"
+        green: "#28634d"
+        yellow: "#9d5823"
+        blue: "#415c77"
+        magenta: "#532706"
+        cyan: "#3a6868"
+        white: "#330801"
+  - theme: Nudge
+colors:
+  name: Ivory Light
+  author: Baskerville
+  primary:
+    background: "#fef9ec"
+    foreground: "#6d727e"
+  cursor:
+    text: "#fef9ec"
+    cursor: "#6d727e"
+  normal:
+    black: "#c5c1b4"
+    red: "#e75c58"
+    green: "#00a250"
+    yellow: "#a08a00"
+    blue: "#208ffb"
+    magenta: "#d160c4"
+    cyan: "#00a4c1"
+    white: "#3e424d"
+  bright:
+    black: "#a1a6b2"
+    red: "#b22b31"
+    green: "#007427"
+    yellow: "#715f00"
+    blue: "#0065ca"
+    magenta: "#a03196"
+    cyan: "#007693"
+    white: "#282c36"
+theme: Baskerville-ivorylight

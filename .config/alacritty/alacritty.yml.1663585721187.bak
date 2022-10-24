@@ -1,0 +1,74 @@
+items:
+  - colors:
+      name: Nudge
+      author: ""
+      primary:
+        background: "#000000"
+        foreground: "#ffffff"
+      cursor:
+        text: "#000000"
+        cursor: "#ffffff"
+      normal:
+        black: "#658280"
+        red: "#822f5d"
+        green: "#184a31"
+        yellow: "#9d4500"
+        blue: "#304465"
+        magenta: "#330801"
+        cyan: "#175552"
+        white: "#110005"
+      bright:
+        black: "#8ca8a6"
+        red: "#a24b76"
+        green: "#28634d"
+        yellow: "#9d5823"
+        blue: "#415c77"
+        magenta: "#532706"
+        cyan: "#3a6868"
+        white: "#330801"
+  - theme: Nudge
+colors:
+  name: Tomorrow (light)
+  author: Chris Kempson
+  primary:
+    background: "#ffffff"
+    foreground: "#373b41"
+  cursor:
+    text: "#ffffff"
+    cursor: "#373b41"
+  normal:
+    black: "#1d1f21"
+    red: "#cc6666"
+    green: "#b5bd68"
+    yellow: "#f0c674"
+    blue: "#81a2be"
+    magenta: "#b294bb"
+    cyan: "#8abeb7"
+    white: "#c5c8c6"
+  bright:
+    black: "#969896"
+    red: "#cc6666"
+    green: "#b5bd68"
+    yellow: "#f0c674"
+    blue: "#81a2be"
+    magenta: "#b294bb"
+    cyan: "#8abeb7"
+    white: "#ffffff"
+theme: Tomorrow.light
+
+font:
+  normal:
+    family: hack
+    style: Regular
+  bold:
+    family: hack
+    style: Bold
+  italic:
+    family: hack
+    style: Italitc
+  bold_italic:
+    family: hack
+    stly: Bold Italic
+
+  # Point size
+  size: 9.0
