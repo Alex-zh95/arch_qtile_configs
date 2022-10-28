@@ -181,11 +181,19 @@ def init_layout_theme():
 
 layout_theme = init_layout_theme()
 
+# Max theme  features thinner margins
+max_theme = init_layout_theme()
+max_theme["margin"] = 7
+max_theme["border_width"] = 0
+
+bsp_theme = init_layout_theme()
+bsp_theme["fair"] = False
+
 layouts = [
     layout.Columns(**layout_theme),
-    layout.Max(**layout_theme),
+    layout.Max(**max_theme),
+    layout.Bsp(**bsp_theme),
     layout.Floating(**layout_theme),
-    layout.MonadTall(**layout_theme)
 ]
 
 # COLORS FOR THE BAR
