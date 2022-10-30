@@ -147,10 +147,9 @@ fi
 ### ALIASES ###
 
 #list
-alias ls='ls --color=auto'
-alias la='ls -a'
-alias ll='ls -alFh'
-alias l='ls'
+alias ls='exa --color=auto'
+alias ll='exa -lhF --icons'
+alias lla='exa -lahF --icons'
 alias l.="ls -A | egrep '^\.'"
 
 #fix obvious typo's
