@@ -40,11 +40,15 @@ keys = [
    	Key([mod], "t", lazy.spawn(home+"/.config/qtile/tuxedo_trackpad_toggle.sh"), desc="Toggle touchpad"),
     Key([mod], "f", lazy.window.toggle_fullscreen()),
     Key([mod], "q", lazy.window.kill()),
+    Key([mod], "p", lazy.spawn("pavucontrol"), desc="Launch pavucontrol"),
 
     # SUPER + SHIFT KEYS
 
     Key([mod, "shift"], "q", lazy.spawn("archlinux-logout"), desc="Logout screen"),
     Key([mod, "shift"], "r", lazy.restart()),
+
+    # Screenshot
+    Key([mod, "shift"], "c", lazy.spawn('xfce4-screenshooter -r -o ristretto')), 
 
 
     # QTILE LAYOUT KEYS
@@ -533,6 +537,7 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='Galculator'),
     Match(wm_class='archlinux-logout'),
     Match(wm_class='xfce4-terminal'),
+    Match(wm_class='pavucontrol'),
 
 ],  fullscreen_border_width=0, border_width=0)
 auto_fullscreen = True
