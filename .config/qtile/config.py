@@ -54,6 +54,7 @@ keys = [
     # QTILE LAYOUT KEYS
     Key([mod, "control"], "n", lazy.layout.normalize()),
     Key([mod], "space", lazy.next_layout()),
+    Key([mod, "shift"], "space", lazy.prev_layout()),
 
     # CHANGE FOCUS
     Key([mod], "Up", lazy.layout.up()),
@@ -139,16 +140,29 @@ keys = [
     Key([mod, "shift"], "Right", lazy.layout.swap_right()),
 
     # TOGGLE FLOATING LAYOUT
-    Key([mod, "shift"], "space", lazy.window.toggle_floating()),
+    Key([mod, "shift"], "w", lazy.window.toggle_floating()),
 
 ]
 
 groups = []
 
 # FOR QWERTY KEYBOARDS
-group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ]
-group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ]
-group_layouts = ["columns", "columns", "columns", "columns", "columns", "columns", "columns", "columns", "columns", "columns", ]
+group_dict = {
+        "1": "columns",
+        "2": "bsp",
+        "3": "columns",
+        "4": "bsp",
+        "5": "columns",
+        "6": "bsp",
+        "7": "columns",
+        "8": "max",
+        "9": "max",
+        "0": "max"
+}
+
+group_names = list(group_dict.keys())
+group_labels = group_names
+group_layouts = list(group_dict.values())
 
 for i in range(len(group_names)):
     groups.append(
@@ -174,30 +188,32 @@ for i in groups:
     ])
 
 
-def init_layout_theme():
+def init_default_theme():
     return {
-        "margin": 10,
+        "margin": [10, 5, 10, 5],
         "border_width": 2,
         "border_focus": "#fe8019",
-        "border_normal": "#4c566a"
+        "border_normal": "#4c566a",
+        'margin_on_single': 0
     }
 
 
-layout_theme = init_layout_theme()
+default_theme = init_default_theme()
 
-# Max theme  features thinner margins
-max_theme = init_layout_theme()
-max_theme["margin"] = 7
+# Max theme - no margins needed
+max_theme = init_default_theme()
+max_theme["margin"] = 0
 max_theme["border_width"] = 0
 
-bsp_theme = init_layout_theme()
-bsp_theme["fair"] = False
+# BSP theme - set new splits at currently focused window
+bsp_theme = init_default_theme()
+bsp_theme["fair"] = False 
 
 layouts = [
-    layout.Columns(**layout_theme),
+    layout.Columns(**default_theme),
     layout.Max(**max_theme),
     layout.Bsp(**bsp_theme),
-    layout.Floating(**layout_theme),
+    layout.Floating(**default_theme),
 ]
 
 # COLORS FOR THE BAR
@@ -246,16 +262,8 @@ widget_defaults = init_widgets_defaults()
 def init_widgets_list(screen_id=1) -> list:
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
-        widget.Image(
-            background = colors[10],
-            filename=home + '/.config/conky/images/arcolinux-500x500.png',
-            margin_y=0,
-            mouse_callbacks = {'Button1': lazy.spawn("rofi -show drun")},
-            padding=0,
-        ),
         widget.CurrentLayoutIcon(
             custom_icon_paths=[home+"/.config/qtile/icons"],
-            #font="Noto Sans Bold",
             scale=0.7,
             foreground=colors[5], 
             background=colors[10]
@@ -312,6 +320,7 @@ def init_widgets_list(screen_id=1) -> list:
             font='MesloLGS NF',
             fmt=' {}:',
             fontsize=24,
+            mouse_callbacks = {'Button1': lazy.spawn("rofi -show drun")}
         ),
         widget.TextBox( # Powerline right-arrow
             font='MesloLGS NF',
@@ -439,35 +448,15 @@ def init_widgets_list(screen_id=1) -> list:
 
     return widgets_list
 
-
-widgets_list = init_widgets_list()
-
-
-def init_widgets_screen1():
-    widgets_screen1 = init_widgets_list(screen_id=1)
-    return widgets_screen1
-
-
-def init_widgets_screen2():
-    widgets_screen2 = init_widgets_list(screen_id=2)
-    return widgets_screen2
-
-
-widgets_screen1 = init_widgets_screen1()
-widgets_screen2 = init_widgets_screen2()
+def init_widgets_screen(screen_id: int=1):
+    widgets_screen = init_widgets_list(screen_id)
+    return widgets_screen
 
 def init_screens(): 
-    bar_margin = [
-            0, #layout_theme["margin"], # N
-            0, #layout_theme["margin"], # E
-            int(layout_theme["margin"]/2), # S
-            0, #layout_theme["margin"]  # W
-    ] 
-
     return [
-        Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=36, opacity=0.8, margin=bar_margin)),
-        Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=36, opacity=0.8, margin=bar_margin)),
-        Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=36, opacity=0.8, margin=bar_margin))
+        Screen(top=bar.Bar(widgets=init_widgets_screen(1), size=36, opacity=0.8)),
+        Screen(top=bar.Bar(widgets=init_widgets_screen(2), size=36, opacity=0.8)),
+        Screen(top=bar.Bar(widgets=init_widgets_screen(3), size=36, opacity=0.8))
     ]
 
 

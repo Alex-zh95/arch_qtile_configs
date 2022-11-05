@@ -23,7 +23,7 @@ set mouse=a
 call plug#begin()
 
 " Nerd-tree file explorer plug-in
-Plug 'preservim/nerdtree'
+"Plug 'preservim/nerdtree'
 
 " Add arline and airlinetheme
 Plug 'vim-airline/vim-airline'
@@ -46,16 +46,6 @@ call plug#end()
 " Set the color scheme
 colorscheme nord
 
-" ----- NERDTree settings -----
-" Auto-start NERDTree on entering vim and put cursor on other window
-autocmd VimEnter * NERDTree | wincmd p
-
-" Keyboard shortcuts 
-nnoremap <C-p> :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
-
 " Navigation shortcuts
 nmap <silent> <C-k> :wincmd k<CR>
 nmap <silent> <C-j> :wincmd j<CR>
@@ -66,14 +56,16 @@ nmap <silent> <C-a> :wincmd <<CR>
 nmap <silent> <C-d> :wincmd ><CR>
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+"autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " ----- vim-airline theming -----
-let g:airline_theme='murmur'
+let g:airline_theme='monochrome'
+
+" Replace standard separators with arrows
+"let g:airline_left_sep=''
+"let g:airline_right_sep=''
 
 " ----- VimTex settings -----
 let g:tex_flavor='latex'
-let g:vimtex_view_general_viewer='okular'
+let g:vimtex_view_general_viewer='zathura'
 let g:vimtex_quickfix_mode=0
-" set conceallevel=2
-"let g:tex_conceal='abdmg'
