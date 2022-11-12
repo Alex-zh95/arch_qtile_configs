@@ -18,7 +18,6 @@ home = os.path.expanduser('~')
 # Touchpad parameters for TUXEDO - touchpad controls relegated to different script
 # touchpadName = r'"UNIW0001:00 093A:0255 Touchpad"'
 
-
 @lazy.function
 def window_to_prev_group(qtile):
     if qtile.currentWindow is not None:
@@ -32,24 +31,24 @@ def window_to_next_group(qtile):
         i = qtile.groups.index(qtile.currentGroup)
         qtile.currentWindow.togroup(qtile.groups[i + 1].name)
 
-
 keys = [
-    Key([mod], "Return", lazy.spawn("alacritty"), desc="Launch terminal"),
+    Key([mod], "Return", lazy.spawn(f"alacritty -e {home}/.config/tmux/tmux_init.py"), desc="Launch terminal with last detached tmux instance"),
     Key([mod], "d", lazy.spawn("rofi -show drun"), desc="Launch rofi launcher"),
+    Key([mod], "s", lazy.spawn(f'rofi -show dggr -modi "dggr:{home}/.config/rofi/ddgr_search.sh" -font "Hack 20" -eh 3'), desc="Lauch duckduckgo search in rofi"),
     Key([mod], "w", lazy.spawn("rofi -show window"), desc="Launch rofi window browser"),
    	Key([mod], "t", lazy.spawn(home+"/.config/qtile/tuxedo_trackpad_toggle.sh"), desc="Toggle touchpad"),
     Key([mod], "f", lazy.window.toggle_fullscreen()),
     Key([mod], "q", lazy.window.kill()),
     Key([mod], "p", lazy.spawn("pavucontrol"), desc="Launch pavucontrol"),
 
-    # SUPER + SHIFT KEYS
-
+    Key([mod, "shift"], "Return", lazy.spawn("alacritty -e tmux"), desc="Launch terminal with new tmux instance"),
     Key([mod, "shift"], "q", lazy.spawn("archlinux-logout"), desc="Logout screen"),
     Key([mod, "shift"], "r", lazy.restart()),
 
     # Screenshot
     Key([mod, "shift"], "c", lazy.spawn('xfce4-screenshooter -r -o ristretto')), 
 
+    Key([mod, "shift"], "n", lazy.spawn('setxkbmap -option caps.escape'), desc='Normalize caps lock to escape'),
 
     # QTILE LAYOUT KEYS
     Key([mod, "control"], "n", lazy.layout.normalize()),
@@ -496,7 +495,6 @@ def set_floating(window):
 
 
 floating_types = ["notification", "toolbar", "splash", "dialog"]
-
 
 follow_mouse_focus = False 
 bring_front_click = True

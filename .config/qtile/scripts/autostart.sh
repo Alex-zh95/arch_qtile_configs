@@ -43,7 +43,6 @@ feh --bg-fill $HOME/Bilder/background.png &
 #start sxhkd to replace Qtile native key-bindings
 #run sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
 
-
 #starting utility applications at boot time
 run nm-applet &
 run dropbox &

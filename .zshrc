@@ -330,6 +330,7 @@ alias nf="$EDITOR ~/.config/fish/config.fish"
 
 # Qtile config quick-access
 alias nqtile="$EDITOR ~/.config/qtile/config.py"
+alias tqtile="python ~/.config/qtile/config.py"
 alias nautostart="$EDITOR ~/.config/qtile/scripts/autostart.sh"
 
 #gpg
