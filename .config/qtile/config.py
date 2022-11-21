@@ -48,7 +48,7 @@ keys = [
     # Screenshot
     Key([mod, "shift"], "c", lazy.spawn('xfce4-screenshooter -r -o ristretto')), 
 
-    Key([mod, "shift"], "n", lazy.spawn('setxkbmap -option caps.escape'), desc='Normalize caps lock to escape'),
+    Key([mod, "shift"], "n", lazy.spawn('setxkbmap -option caps:escape'), desc='Normalize caps lock to escape'),
 
     # QTILE LAYOUT KEYS
     Key([mod, "control"], "n", lazy.layout.normalize()),
@@ -480,11 +480,14 @@ def start_once():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/scripts/autostart.sh'])
 
-
 @hook.subscribe.startup
 def start_always():
     # Set the cursor to something sane in X
     subprocess.Popen(['xsetroot', '-cursor_name', 'left_ptr'])
+
+    # In startup also refresh background
+    home = os.path.expanduser('~')
+    subprocess.run(['feh', '--bg-fill', home+'/Bilder/background.png', '&'])
 
 
 @hook.subscribe.client_new
