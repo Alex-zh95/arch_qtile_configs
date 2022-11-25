@@ -1,12 +1,10 @@
 import os
-import re
 import socket
 import subprocess
-from typing import List  # noqa: F401
 from libqtile import layout, bar, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule
+from libqtile.config import Drag, Group, Key, Match, Screen
 from libqtile.command import lazy
-from libqtile.widget import Spacer
+#from libqtile.widget import Spacer
 import arcobattery
 
 #mod4 or mod = super key
@@ -47,11 +45,10 @@ keys = [
 
     # Screenshot
     Key([mod, "shift"], "c", lazy.spawn('xfce4-screenshooter -r -o ristretto')), 
-
-    Key([mod, "shift"], "n", lazy.spawn('setxkbmap -option caps:escape'), desc='Normalize caps lock to escape'),
+    Key([mod], 'n', subprocess.run(['setxkbmap', '-option', 'caps:escape'])),
 
     # QTILE LAYOUT KEYS
-    Key([mod, "control"], "n", lazy.layout.normalize()),
+    Key([mod, "shift"], "n", lazy.layout.normalize()),
     Key([mod], "space", lazy.next_layout()),
     Key([mod, "shift"], "space", lazy.prev_layout()),
 
@@ -64,7 +61,6 @@ keys = [
     Key([mod], "j", lazy.layout.down()),
     Key([mod], "h", lazy.layout.left()),
     Key([mod], "l", lazy.layout.right()),
-
 
     # RESIZE UP, DOWN, LEFT, RIGHT
     Key([mod, "control"], "l",
@@ -480,6 +476,9 @@ def start_once():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/scripts/autostart.sh'])
 
+    # Re-map the caps lock key to escape
+    subprocess.run(['setxkbmap', '-option', 'caps:escape'])
+
 @hook.subscribe.startup
 def start_always():
     # Set the cursor to something sane in X
@@ -488,7 +487,6 @@ def start_always():
     # In startup also refresh background
     home = os.path.expanduser('~')
     subprocess.run(['feh', '--bg-fill', home+'/Bilder/background.png', '&'])
-
 
 @hook.subscribe.client_new
 def set_floating(window):

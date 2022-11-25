@@ -23,9 +23,6 @@ function run {
 
 keybLayout=$(setxkbmap -v | awk -F "+" '/symbols/ {print $2}')
 
-# Remap the Caps-lock key to escape
-setxkbmap -option caps:escape
-
 #if [ $keybLayout = "be" ]; then
 #  cp $HOME/.config/qtile/config-azerty.py $HOME/.config/qtile/config.py
 #fi
