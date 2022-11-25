@@ -254,136 +254,185 @@ def text_concatenator(input_string: str, sep=' - ') -> str:
 
 widget_defaults = init_widgets_defaults()
 
+# Initialization of persistent window objects
+standard_sep = widget.Sep(
+    linewidth=1,
+    padding=10,
+    foreground=colors[2],
+    background=colors[10] 
+)
+
+screenshot_button = widget.TextBox(
+    font='MesloLGS NF',
+    text='',
+    padding=5,
+    foreground=colors[9],
+    background=colors[10],
+    fontsize=36,
+    mouse_callbacks = {'Button1': lazy.spawn('xfce4-screenshooter -r -o ristretto'), 'Button3': lazy.spawn('xfce4-screenshooter')}
+)
+
+powerline_dark_right = widget.TextBox(
+    font='MesloLGS NF',
+    text=u"\ue0b0",
+    foreground=colors[10],
+    background=colors[1],
+    fontsize=36
+)
+
+window_close = widget.TextBox(
+    font='FontAwesome',
+    text='',
+    foreground=colors[6],
+    background=colors[1],
+    padding=4,
+    fontsize=30,
+    mouse_callbacks = {'Button1': lazy.window.kill()}
+)
+
+powerline_dark_left = widget.TextBox(
+    font='MesloLGS NF',
+    text=u"\ue0b2",
+    foreground=colors[10],
+    background=colors[1],
+    fontsize=36
+)
+# battery option 1  ArcoLinux Horizontal icons do not forget to import arcobattery at the top
+arco_battery_icon = arcobattery.BatteryIcon(
+    padding=2,
+    scale=0.9,
+    y_poss=0,
+    theme_path=home + "/.config/qtile/icons/battery_icons_horiz",
+    update_interval=2,
+    background=colors[10]
+)
+
+battery_text = widget.Battery(
+    font="Noto Sans",
+    update_interval=10,
+    fontsize=24,
+    foreground=colors[5],
+    background=colors[10],
+    show_short_text=False,
+    format='{percent:2.0%}',
+)
+
+memory_display = widget.Memory(
+    font="Noto Sans",
+    format='  : {MemUsed:,.1f}G/{MemTotal:,.1f}G',
+    measure_mem='G',
+    measure_wap='G',
+    update_interval=1,
+    fontsize=24,
+    foreground=colors[5],
+    background=colors[10],
+    mouse_callbacks = {'Button1': lazy.spawn("rofi -show window")},
+    padding=4
+)
+
+powerline_orange_left = widget.TextBox( # Powerline left-arrow
+    font='MesloLGS NF',
+    text=u"\ue0b2",
+    foreground=colors[11], # Foreground to be orange
+    background=colors[10], # Background to match left gray box
+    fontsize=36,
+)
+
+clock_widget = widget.Clock(
+    font="Noto Sans",
+    foreground=colors[0],
+    background=colors[11],
+    fontsize=24,
+    padding=1,
+    format="  %Y-%m-%d  %H:%M "
+)
+
+inverted_sep = widget.Sep(
+    linewidth=1,
+    padding=10,
+    foreground=colors[0],
+    background=colors[11]
+)
+
+logout_widget = widget.TextBox(
+    foreground=colors[0],
+    background=colors[11],
+    font="Noto Sans",
+    fontsize=24,
+    text=os.getlogin() + " ⏻ ", 
+    mouse_callbacks = {'Button1': lazy.spawn("archlinux-logout")}
+)
+
 def init_widgets_list(screen_id=1) -> list:
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
-    widgets_list = [
-        widget.CurrentLayoutIcon(
-            custom_icon_paths=[home+"/.config/qtile/icons"],
-            scale=0.7,
-            foreground=colors[5], 
-            background=colors[10]
-        ),
-        widget.Sep(
-            linewidth=1,
-            padding=10,
-            foreground=colors[2],
-            background=colors[10] 
-        ),
-        widget.GroupBox(
-            font="Noto Sans",
-            fontsize=24,
-            margin_y=2,
-            margin_x=0,
-            padding_y=10,
-            padding_x=5,
-            borderwidth=0,
-            disable_drag=True,
-            active=colors[4],
-            inactive=colors[9],
-            rounded=False,
-            highlight_method="text",
-            this_current_screen_border=colors[11],
-            hide_unused=False,
-            foreground=colors[3],
-            background=colors[10]
-        ),
-        widget.Sep(
-            linewidth=1,
-            padding=10,
-            foreground=colors[2],
-            background=colors[10]
-        ),
-        widget.TextBox(
-            font='MesloLGS NF',
-            text='',
-            padding=5,
-            foreground=colors[9],
-            background=colors[10],
-            fontsize=36,
-            mouse_callbacks = {'Button1': lazy.spawn('xfce4-screenshooter -r -o ristretto'), 'Button3': lazy.spawn('xfce4-screenshooter')}
-        ),
-        widget.Sep(
-            linewidth=1,
-            padding=10,
-            foreground=colors[2],
-            background=colors[10]
-        ),
-        widget.AGroupBox(
-            foreground=colors[5],
-            background=colors[10],
-            border=colors[10], # Make the border invisible
-            font='MesloLGS NF',
-            fmt=' {}:',
-            fontsize=24,
-            mouse_callbacks = {'Button1': lazy.spawn("rofi -show drun")}
-        ),
-        widget.TextBox( # Powerline right-arrow
-            font='MesloLGS NF',
-            text=u"\ue0b0",
-            foreground=colors[10],
-            background=colors[1],
-            fontsize=36
-        ),
-        widget.WindowName(
-            foreground=colors[5],
-            background=colors[1],
-            font='Noto Sans',
-            fmt='{}',
-            empty_group_string='Ø',
-            parse_text=text_concatenator,
-            padding=7
 
-        ),
-        widget.TextBox(
-            font='FontAwesome',
-            text='',
-            foreground=colors[6],
-            background=colors[1],
-            padding=4,
-            fontsize=30,
-            mouse_callbacks = {'Button1': lazy.window.kill()}
-        ),
-        widget.TextBox( # Powerline left-arrow
-            font='MesloLGS NF',
-            text=u"\ue0b2",
-            foreground=colors[10],
-            background=colors[1],
-            fontsize=36
-        ),
-        # # battery option 1  ArcoLinux Horizontal icons do not forget to import arcobattery at the top
-        widget.Sep(
-            linewidth=1,
-            padding=10,
-            foreground=colors[10],
-            background=colors[10]
-        ),
-        arcobattery.BatteryIcon(
-            padding=2,
-            scale=0.9,
-            y_poss=0,
-            theme_path=home + "/.config/qtile/icons/battery_icons_horiz",
-            update_interval=2,
-            background=colors[10]
-        ),
-        widget.Battery(
-            font="Noto Sans",
-            update_interval=10,
-            fontsize=24,
-            foreground=colors[5],
-            background=colors[10],
-            show_short_text=False,
-            format='{percent:2.0%}',
-        )
+    # Initializing widgets that depend on screen and content on screen
+    current_layout_icon = widget.CurrentLayoutIcon(
+        custom_icon_paths=[home+"/.config/qtile/icons"],
+        scale=0.7,
+        foreground=colors[5], 
+        background=colors[10]
+    )
+
+    group_box = widget.GroupBox(
+        font="Noto Sans",
+        fontsize=24,
+        margin_y=2,
+        margin_x=0,
+        padding_y=10,
+        padding_x=5,
+        borderwidth=0,
+        disable_drag=True,
+        active=colors[4],
+        inactive=colors[9],
+        rounded=False,
+        highlight_method="text",
+        this_current_screen_border=colors[11],
+        hide_unused=False,
+        foreground=colors[3],
+        background=colors[10]
+    )
+
+    run_on_group = widget.AGroupBox(
+        foreground=colors[5],
+        background=colors[10],
+        border=colors[10], # Make the border invisible
+        font='MesloLGS NF',
+        fmt=' {}:',
+        fontsize=24,
+        mouse_callbacks = {'Button1': lazy.spawn("rofi -show drun")}
+    )
+
+    window_name = widget.WindowName(
+        foreground=colors[5],
+        background=colors[1],
+        font='Noto Sans',
+        fmt='{}',
+        empty_group_string='Ø',
+        parse_text=text_concatenator,
+        padding=7
+    )
+
+    widgets_list = [
+        current_layout_icon,
+        standard_sep,
+        group_box,
+        standard_sep,
+        screenshot_button,
+        standard_sep,
+        run_on_group,
+        powerline_dark_right,
+        window_name,
+        window_close,
+        powerline_dark_left,
+        standard_sep,
+        arco_battery_icon,
+        battery_text
     ]
     
     if screen_id == 1:
         widgets_list.extend([
-            widget.Sep(
-                linewidth=1,
-                padding=10,
-                foreground=colors[2],
-                background=colors[10]
-            ),
+            standard_sep,
             widget.Systray(
                 background=colors[10],
                 icon_size=40,
@@ -392,53 +441,12 @@ def init_widgets_list(screen_id=1) -> list:
         ])
 
     widgets_list.extend([
-        widget.Sep(
-            linewidth=1,
-            padding=10,
-            foreground=colors[2],
-            background=colors[10]
-        ), 
-        widget.Memory(
-            font="Noto Sans",
-            format='  : {MemUsed:,.1f}G/{MemTotal:,.1f}G',
-            measure_mem='G',
-            measure_wap='G',
-            update_interval=1,
-            fontsize=24,
-            foreground=colors[5],
-            background=colors[10],
-            mouse_callbacks = {'Button1': lazy.spawn("rofi -show window")},
-            padding=4
-        ),
-        widget.TextBox( # Powerline left-arrow
-            font='MesloLGS NF',
-            text=u"\ue0b2",
-            foreground=colors[11], # Foreground to be orange
-            background=colors[10], # Background to match left gray box
-            fontsize=36,
-        ),
-        widget.Clock(
-            font="Noto Sans",
-            foreground=colors[0],
-            background=colors[11],
-            fontsize=24,
-            padding=1,
-                format="  %Y-%m-%d  %H:%M "
-        ),
-        widget.Sep(
-            linewidth=1,
-            padding=10,
-            foreground=colors[0],
-            background=colors[11]
-        ),
-        widget.TextBox(
-            foreground=colors[0],
-            background=colors[11],
-            font="Noto Sans",
-            fontsize=24,
-            text=os.getlogin() + " ⏻ ", 
-            mouse_callbacks = {'Button1': lazy.spawn("archlinux-logout")}
-        )
+        standard_sep, 
+        memory_display,
+        powerline_orange_left,
+        clock_widget,
+        inverted_sep,
+        logout_widget        
     ])
 
     return widgets_list
