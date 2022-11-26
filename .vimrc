@@ -55,17 +55,32 @@ nmap <silent> <C-l> :wincmd l<CR>
 nmap <silent> <C-a> :wincmd <<CR>
 nmap <silent> <C-d> :wincmd ><CR>
 
+" YouCompleteMe (YCM) options
+" Enable toggle of diagnostics and completion menu with F3
+function Toggle_ycm()
+    if g:ycm_show_diagnostics_ui == 0
+        let g:ycm_auto_trigger = 1
+        let g:ycm_show_diagnostics_ui = 1
+        :YcmRestartServer
+        :e
+        :echo "YCM on"
+    elseif g:ycm_show_diagnostics_ui == 1
+        let g:ycm_auto_trigger = 0
+        let g:ycm_show_diagnostics_ui = 0
+        :YcmRestartServer
+        :e
+        :echo "YCM off"
+    endif
+endfunction
+map <F3> :call Toggle_ycm() <CR>
+
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 "autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " ----- vim-airline theming -----
 let g:airline_theme='monochrome'
 
-" Replace standard separators with arrows
-"let g:airline_left_sep=''
-"let g:airline_right_sep=''
-
 " ----- VimTex settings -----
 let g:tex_flavor='latex'
-let g:vimtex_view_general_viewer='zathura'
-let g:vimtex_quickfix_mode=0
+"let g:vimtex_view_general_viewer='zathura'
+"let g:vimtex_quickfix_mode=0
