@@ -45,7 +45,7 @@ keys = [
 
     # Screenshot
     Key([mod, "shift"], "c", lazy.spawn('xfce4-screenshooter -r -o ristretto')), 
-    Key([mod], 'n', subprocess.run(['setxkbmap', '-option', 'caps:escape'])),
+    Key([mod], 'n', lazy.spawn('setxkbmap -option caps:escape')),
 
     # QTILE LAYOUT KEYS
     Key([mod, "shift"], "n", lazy.layout.normalize()),
@@ -217,7 +217,7 @@ def init_colors():
     return [["#2E3440", "#2E3440"],  # color 0 - Background 1 - Polar night - darkest
             ["#4c566a", "#4c566a"],  # color 1 - Background 2 - Polar night - lightest
             ["#c0c5ce", "#c0c5ce"],  # color 2 - LIGHT GRAY
-            ["#fba922", "#fba922"],  # color 3 - ORANGE
+            ["#2e3440", "#3b4252"],  # color 3 - Gradient of Background 1 to Background 3
             ["#3384d0", "#3384d0"],  # color 4 - Arco-Linux BLUE
             ["#eceff4", "#eceff4"],  # color 5 - OFF-WHITE
             ["#bf616a", "#bf616a"],  # color 6 - RED
@@ -227,7 +227,6 @@ def init_colors():
             ["#3b4252", "#3b4252"],  # color 10 - Background 3 - Polar night - darker
             ["#d08770", "#d08770"],  # color 11 - Foreground highest - aurora orange
             ]
-
 
 colors = init_colors()
 
@@ -377,24 +376,27 @@ def init_widgets_list(screen_id=1) -> list:
     group_box = widget.GroupBox(
         font="Noto Sans",
         fontsize=24,
-        margin_y=2,
+        margin_y=4,
         margin_x=0,
-        padding_y=10,
+        padding_y=5,
         padding_x=5,
-        borderwidth=0,
+        borderwidth=5,
         disable_drag=True,
         active=colors[4],
         inactive=colors[9],
         rounded=False,
-        highlight_method="text",
+        highlight_method="line",
+        highlight_color=colors[3],
         this_current_screen_border=colors[11],
+        other_screen_border=colors[2],
+        other_current_screen_border=colors[2],
         hide_unused=False,
         foreground=colors[3],
         background=colors[10]
     )
 
     run_on_group = widget.AGroupBox(
-        foreground=colors[5],
+        foreground=colors[4],
         background=colors[10],
         border=colors[10], # Make the border invisible
         font='MesloLGS NF',
@@ -425,7 +427,6 @@ def init_widgets_list(screen_id=1) -> list:
         window_name,
         window_close,
         powerline_dark_left,
-        standard_sep,
         arco_battery_icon,
         battery_text
     ]
