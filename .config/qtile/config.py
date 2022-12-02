@@ -45,7 +45,7 @@ keys = [
 
     # Screenshot
     Key([mod, "shift"], "c", lazy.spawn('xfce4-screenshooter -r -o ristretto')), 
-    Key([mod], 'n', lazy.spawn('setxkbmap -option caps:escape')),
+    #Key([mod], 'n', lazy.spawn('setxkbmap -option caps:escape')),
 
     # QTILE LAYOUT KEYS
     Key([mod, "shift"], "n", lazy.layout.normalize()),
@@ -486,7 +486,7 @@ def start_once():
     subprocess.call([home + '/.config/qtile/scripts/autostart.sh'])
 
     # Re-map the caps lock key to escape
-    subprocess.run(['setxkbmap', '-option', 'caps:escape'])
+    #subprocess.run(['setxkbmap', '-option', 'caps:escape'])
 
 @hook.subscribe.startup
 def start_always():
