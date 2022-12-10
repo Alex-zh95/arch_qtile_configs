@@ -13,9 +13,6 @@ mod1 = "alt"
 mod2 = "control"
 home = os.path.expanduser('~')
 
-# Touchpad parameters for TUXEDO - touchpad controls relegated to different script
-# touchpadName = r'"UNIW0001:00 093A:0255 Touchpad"'
-
 @lazy.function
 def window_to_prev_group(qtile):
     if qtile.currentWindow is not None:
@@ -34,7 +31,7 @@ keys = [
     Key([mod], "d", lazy.spawn("rofi -show drun"), desc="Launch rofi launcher"),
     Key([mod], "s", lazy.spawn(f'rofi -show dggr -modi "dggr:{home}/.config/rofi/ddgr_search.sh" -font "Hack 20" -eh 3'), desc="Lauch duckduckgo search in rofi"),
     Key([mod], "w", lazy.spawn("rofi -show window"), desc="Launch rofi window browser"),
-   	Key([mod], "t", lazy.spawn(home+"/.config/qtile/tuxedo_trackpad_toggle.sh"), desc="Toggle touchpad"),
+   	Key([mod], "t", lazy.spawn("hidraw-tog"), desc="Toggle touchpad (requries hidraw-tog to be compiled and installed)."),
     Key([mod], "f", lazy.window.toggle_fullscreen()),
     Key([mod], "q", lazy.window.kill()),
     Key([mod], "p", lazy.spawn("pavucontrol"), desc="Launch pavucontrol"),
@@ -45,7 +42,6 @@ keys = [
 
     # Screenshot
     Key([mod, "shift"], "c", lazy.spawn('xfce4-screenshooter -r -o ristretto')), 
-    #Key([mod], 'n', lazy.spawn('setxkbmap -option caps:escape')),
 
     # QTILE LAYOUT KEYS
     Key([mod, "shift"], "n", lazy.layout.normalize()),
@@ -484,9 +480,6 @@ main = None
 def start_once():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/scripts/autostart.sh'])
-
-    # Re-map the caps lock key to escape
-    #subprocess.run(['setxkbmap', '-option', 'caps:escape'])
 
 @hook.subscribe.startup
 def start_always():
