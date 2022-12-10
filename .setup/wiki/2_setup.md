@@ -1,3 +1,23 @@
+# Arch-Linux
+Nach einer frischen Installation des Arch-Linux-Systems sollte die Arco-Repositorien importiert werden. Auf der folgenden Webseite das Paket arcolinux-spices herunterladen:
+```
+URL: https://www.arcolinux.info/arcolinux-spices-application/
+```
+
+Eine Lokalinstallation durchführen:
+```
+sudo pacman -U /heruntergeladene/Datei
+```
+
+Arcolinux-spices ausführen, um die Arco-Repos zu aktivieren. Dann pacman auffrischen. 
+
+## Pakete installieren
+Voreingestellte Pakete sind in `Package_list/packages.x86_64` vorgegeben. AUR-Helper yay wird dabei mitinstalliert. 
+```
+cd /Pfad/zu/.setup/Package_list/
+./installer.py
+```
+
 # Probleme bei Kernel-Aktualisierungen
 Mögliche Auslöser:
 - Defekte Stromvsorgung verursacht unterbrochenen Aktualisierungsprozess
