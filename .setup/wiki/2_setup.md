@@ -1,11 +1,10 @@
 # Arch-Linux
 Nach einer frischen Installation des Arch-Linux-Systems sollte die Arco-Repositorien importiert werden. Auf der folgenden Webseite das Paket arcolinux-spices herunterladen:
-```
-URL: https://www.arcolinux.info/arcolinux-spices-application/
-```
+
+[Arco-Linux Spices](https://www.arcolinux.info/arcolinux-spices-application/)
 
 Eine Lokalinstallation durchführen:
-```
+```bash
 sudo pacman -U /heruntergeladene/Datei
 ```
 
@@ -13,7 +12,7 @@ Arcolinux-spices ausführen, um die Arco-Repos zu aktivieren. Dann pacman auffri
 
 ## Pakete installieren
 Voreingestellte Pakete sind in `Package_list/packages.x86_64` vorgegeben. AUR-Helper yay wird dabei mitinstalliert. 
-```
+```bash
 cd /Pfad/zu/.setup/Package_list/
 ./installer.py
 ```
@@ -27,17 +26,17 @@ Das führt zu unvollständige Kernel-Installationen, die das System nicht erkenn
 
 ## Arch-chroot
 Mit einem Archiso-Stick den Computer neustarten. Mit 
-```
+```bash
 lsblk
 ```
 
 die Systempartitionen suchen. Für EFI-Systeme sollte auch die EFI-Partition identifiziert werden. 
-```
+```bash
 lsblk -f 
 ```
 
 kann Abhilfe leisten. Die Systempartitionen montieren und mit Arch-chroot zugreifen:
-```
+```bash
 sudo mount /dev/nvme-main /mnt
 sudo mount /dev/nvme-efi /mnt/boot/efi
 arch-chroot /mnt
@@ -47,7 +46,7 @@ Forten wird angenommen, dass Root-Rechte und Internetzugang bestehen.
 
 ## Erneut aktualisieren
 Das System in der chroot-Umgebung aktualisieren lassen. Vor allem auf Warnungen und Hinweisen bei wiederholter Kernel-Installation achten.
-```
+```bash
 pacman -Syyu
 ```
 
@@ -57,7 +56,7 @@ Einen anderen Kernel installieren als Failsafe (z.B. linux-lts falls nicht vorha
 Eventuell sind die preset-Dateien während fehlerhafter Aktualisierung beschädigt. 
 
 1. Mit
-    ```
+    ```bash
     mkinitcpio -P
     ```
 
@@ -70,7 +69,7 @@ Eventuell sind die preset-Dateien während fehlerhafter Aktualisierung beschädi
 Ein unterbrochener Aktualisierungsvorgang führt eventuell zu beschädigten bzw. leeren lib-Dateien. Diese Dateien werden in der Aktualisierungsausgabe gemeldet. Die Dateien sollen gelöscht werden. 
 
 Die Dateien befinden sich unter /usr/lib. Treten mehrere solchen Meldungen auf, die gemeldete Dateien aufnehmen und per Skript löschen. Ein Beispiel (python).
-```
+```python
 import re
 import subprocess
 

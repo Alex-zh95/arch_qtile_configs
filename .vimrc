@@ -1,3 +1,9 @@
+" Enforce vimrc
+set nocompatible 
+
+" Add filetype plugin
+filetype plugin on
+
 " Enable absolute line numbers 
 set number
 
@@ -40,6 +46,9 @@ Plug 'ap/vim-css-color'
 
 " Theming Vim to Nord
 Plug 'arcticicestudio/nord-vim'
+
+" Vim-wiki
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
@@ -84,3 +93,6 @@ let g:airline_theme='monochrome'
 let g:tex_flavor='latex'
 "let g:vimtex_view_general_viewer='zathura'
 "let g:vimtex_quickfix_mode=0
+
+" ----- Vimwiki settings -----
+let g:vimwiki_list = [{'path': '~/Dokumente/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
