@@ -6,36 +6,20 @@ alsa-utils
 amd-ucode
 arch-install-scripts
 base
-bind
-broadcom-wl-dkms
-btrfs-progs
-clonezilla
-cryptsetup
-ddrescue
+cmake
 dhclient
-#dhcpcd
 diffutils
-dmidecode
-dmraid
-dnsmasq
-dosfstools
-e2fsprogs
 edk2-shell
 efibootmgr
-#espeakup
 ethtool
-exfatprogs
 f2fs-tools
 fatresize
 fsarchiver
-gnu-netcat
 gpart
 gpm
 gptfdisk
-#grml-zsh-config
 grub
 hdparm
-hyperv
 intel-ucode
 irssi
 #iw
@@ -54,7 +38,6 @@ lsscsi
 lvm2
 man-db
 man-pages
-mc
 mdadm
 memtest86+
 mkinitcpio
@@ -62,7 +45,6 @@ mkinitcpio-archiso
 mkinitcpio-nfs-utils
 modemmanager
 mtools
-nbd
 ndisc6
 nfs-utils
 nilfs-utils
@@ -178,8 +160,8 @@ gst-plugins-good
 gst-plugins-ugly
 gstreamer
 libdvdcss
-#pulseaudio
-#pulseaudio-alsa
+pulseaudio
+pulseaudio-alsa
 pavucontrol
 
 ###bluetooth
@@ -271,35 +253,22 @@ kvantum
 
 ###utilities
 arandr
-#asciinema
 bash-completion
-#baobab
 bat
-#catfish
-#cronie
 dconf-editor
 dex
-#discord
 duf-bin
 edid-decode-git
-#evince
+etcher-bin
+exa
 expac
 file-roller
-#filezilla
 git
 gksu
-#glances
 gnome-disk-utility
 gnome-keyring
-#gnome-screenshot
-#gnome-software
-#gnome-software-packagekit-plugin
 gparted
-#gpick
-#gtop
 hardinfo-gtk3
-#hddtemp
-#htop
 btop
 
 # Spell-checkers
@@ -639,9 +608,9 @@ autorandr
 # Terminal file manager
 ranger
 
-# Google chrome - via Arco repo
+# Browser and automation driver
 google-chrome
-#chromedriver - Chromedriver is AUR so cannot be added here
+chromedriver
 
 # Email client and file sync
 thunderbird
@@ -683,5 +652,11 @@ youtube-dl-gui-git
 
 # Interception tools - for remapping key-inputs in particular for capslock
 interception-caps2esc
+
+# ZSH theme
+zsh-theme-powerlevel10k-git
+
+# Cleanup tool
+bleachbit
 
 ## EOF

@@ -35,6 +35,7 @@ keys = [
     Key([mod], "f", lazy.window.toggle_fullscreen()),
     Key([mod], "q", lazy.window.kill()),
     Key([mod], "p", lazy.spawn("pavucontrol"), desc="Launch pavucontrol"),
+    Key([mod], 'r', lazy.layout.reset(), desc='Reset layout'),
 
     Key([mod, "shift"], "Return", lazy.spawn("alacritty -e tmux"), desc="Launch terminal with new tmux instance"),
     Key([mod, "shift"], "q", lazy.spawn("archlinux-logout"), desc="Logout screen"),
@@ -44,7 +45,6 @@ keys = [
     Key([mod, "shift"], "c", lazy.spawn('xfce4-screenshooter -r -o ristretto')), 
 
     # QTILE LAYOUT KEYS
-    Key([mod, "shift"], "n", lazy.layout.normalize()),
     Key([mod], "space", lazy.next_layout()),
     Key([mod, "shift"], "space", lazy.prev_layout()),
 
@@ -106,11 +106,11 @@ keys = [
 
 
     # FLIP LAYOUT FOR MONADTALL/MONADWIDE
-    Key([mod, "shift"], "f", lazy.layout.flip()),
+    Key([mod, "control"], "f", lazy.layout.flip(), desc='Flip monad screens'),
 
     # TOGGLE SPLIT FUNCTIONS FOR COLUMN/STACK LAYOUT
     # Split mode on a pane allows for windows to be stacked over each other
-    Key([mod, "shift"], "s", lazy.layout.toggle_split()), 
+    Key([mod, "shift"], "s", lazy.layout.toggle_split(), desc='Toggle column to stack'), 
 
     # FLIP LAYOUT FOR BSP
     #Key([mod, "mod1"], "k", lazy.layout.flip_up()),
@@ -131,7 +131,7 @@ keys = [
     Key([mod, "shift"], "Right", lazy.layout.swap_right()),
 
     # TOGGLE FLOATING LAYOUT
-    Key([mod, "shift"], "w", lazy.window.toggle_floating()),
+    Key([mod, "shift"], "f", lazy.window.toggle_floating(), desc='Toggle floating mode'),
 
 ]
 
@@ -168,8 +168,8 @@ for i in groups:
 
         #CHANGE WORKSPACES
         Key([mod], i.name, lazy.group[i.name].toscreen()),
-        Key([mod], "Tab", lazy.next_screen(), desc='Next monitor'),
-        Key([mod, "shift"], "Tab", lazy.screen.prev_group(), desc='Prev monitor'),
+        Key([mod], 'm', lazy.next_screen(), desc='Next monitor'),
+        Key([mod, "shift"], "m", lazy.screen.prev_group(), desc='Prev monitor'),
 
         # MOVE WINDOW TO SELECTED WORKSPACE 1-10 AND STAY ON WORKSPACE
         Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
