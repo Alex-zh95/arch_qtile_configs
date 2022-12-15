@@ -95,4 +95,15 @@ let g:tex_flavor='latex'
 "let g:vimtex_quickfix_mode=0
 
 " ----- Vimwiki settings -----
-let g:vimwiki_list = [{'path': '~/Dokumente/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
+"  Access vim-wiki by <leader>ws (default to \ws)
+let wiki_default = {}
+let wiki_default.path = '~/Dokumente/vimwiki/'
+let wiki_default.syntax = 'markdown'
+let wiki_default.ext = '.md'
+
+let wiki_setup = {}
+let wiki_setup.path = '~/.setup/wiki/'
+let wiki_setup.syntax = 'markdown'
+let wiki_setup.ext = '.md'
+
+let g:vimwiki_list = [wiki_default, wiki_setup]
