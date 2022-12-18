@@ -133,6 +133,10 @@ keys = [
     # TOGGLE FLOATING LAYOUT
     Key([mod, "shift"], "f", lazy.window.toggle_floating(), desc='Toggle floating mode'),
 
+    # Screen movement
+    Key([mod], 'm', lazy.next_screen(), desc='Next monitor'),
+    Key([mod, "shift"], "m", lazy.screen.prev_screen(), desc='Prev monitor'),
+
 ]
 
 groups = []
@@ -168,9 +172,7 @@ for i in groups:
 
         #CHANGE WORKSPACES
         Key([mod], i.name, lazy.group[i.name].toscreen()),
-        Key([mod], 'm', lazy.next_screen(), desc='Next monitor'),
-        Key([mod, "shift"], "m", lazy.screen.prev_group(), desc='Prev monitor'),
-
+        
         # MOVE WINDOW TO SELECTED WORKSPACE 1-10 AND STAY ON WORKSPACE
         Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
         # MOVE WINDOW TO SELECTED WORKSPACE 1-10 AND FOLLOW MOVED WINDOW TO WORKSPACE

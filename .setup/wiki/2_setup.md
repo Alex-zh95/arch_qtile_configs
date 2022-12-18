@@ -4,7 +4,7 @@ Nach einer frischen Installation des Arch-Linux-Systems sollte die Arco-Reposito
 [Arco-Linux Spices](https://www.arcolinux.info/arcolinux-spices-application/)
 
 Eine Lokalinstallation durchführen:
-```bash
+```shell
 sudo pacman -U /heruntergeladene/Datei
 ```
 
@@ -12,7 +12,7 @@ Arcolinux-spices ausführen, um die Arco-Repos zu aktivieren. Dann pacman auffri
 
 ## Pakete installieren
 Voreingestellte Pakete sind in `Package_list/packages.x86_64` vorgegeben. AUR-Helper yay wird dabei mitinstalliert. 
-```bash
+```shell
 cd /Pfad/zu/.setup/Package_list/
 ./installer.py
 ```
@@ -26,17 +26,17 @@ Das führt zu unvollständige Kernel-Installationen, die das System nicht erkenn
 
 ## Arch-chroot
 Mit einem Archiso-Stick den Computer neustarten. Mit 
-```bash
+```shell
 lsblk
 ```
 
 die Systempartitionen suchen. Für EFI-Systeme sollte auch die EFI-Partition identifiziert werden. 
-```bash
+```shell
 lsblk -f 
 ```
 
 kann Abhilfe leisten. Die Systempartitionen montieren und mit Arch-chroot zugreifen:
-```bash
+```shell
 sudo mount /dev/nvme-main /mnt
 sudo mount /dev/nvme-efi /mnt/boot/efi
 arch-chroot /mnt
@@ -46,7 +46,7 @@ Forten wird angenommen, dass Root-Rechte und Internetzugang bestehen.
 
 ## Erneut aktualisieren
 Das System in der chroot-Umgebung aktualisieren lassen. Vor allem auf Warnungen und Hinweisen bei wiederholter Kernel-Installation achten.
-```bash
+```shell
 pacman -Syyu
 ```
 
@@ -56,7 +56,7 @@ Einen anderen Kernel installieren als Failsafe (z.B. linux-lts falls nicht vorha
 Eventuell sind die preset-Dateien während fehlerhafter Aktualisierung beschädigt. 
 
 1. Mit
-    ```bash
+    ```shell
     mkinitcpio -P
     ```
 
@@ -85,3 +85,29 @@ for line in lines:
 print('Done.')
 file.close()
 ```
+
+# Vim-Jupyter
+Zweck ist, die Nutzung von VS Code und andere MS-Produkte abzunehmen. Ein Jupyter-Workflow hilft dabei Python-Skripte zu debuggen bzw. individuelle Code-Snippets zu testen.
+
+- [Jupyter-vim](https://github.com/jupyter-vim/jupyter-vim) lässt sich in Github abrufen. Integrieren kann mit vim-plug. Überprüfe die [.vimrc-Konfigurationsdatei](~/.vimrc).
+- Jede Umegebung muss mit Jupyter augestattet sein. Mit pipenv jupyter installieren, denn in einer Umgebung wird auf nicht voreingestellte Pakete nicht zugegriffen.
+
+## Ersteinrichtung
+1. Voreingestellte Konfigurationsdatei generieren.
+    ```shell
+    jupyter console --generate-config
+    ```
+2. Outputs aus anderen Clients einschalten. Dazu die folgende Zeile in die [Konfig-datei](~/.jupyter/jupyter_console_config.py)
+ hinzufügen:
+    ```python
+    c.ZMQTerminalInteractiveShell.include_other_output = True
+    ```
+    
+## Konsole vorbereiten
+1. Eine neue Konsole-Sitzung ausführen:
+    ```shell
+    pipenv shell
+    jupyter console 
+    ```
+2. Dann in einer anderen terminal-Sitzung die Python-Datei öffnen.
+3. Jupyter-Vim Kurzbefehle finden sich in der [.vimrc-Datei](~/.vimrc)

@@ -50,6 +50,9 @@ Plug 'arcticicestudio/nord-vim'
 " Vim-wiki
 Plug 'vimwiki/vimwiki'
 
+" Enable Jupyter cells in Vim
+Plug 'jupyter-vim/jupyter-vim'
+
 call plug#end()
 
 " Set the color scheme
@@ -107,3 +110,30 @@ let wiki_setup.syntax = 'markdown'
 let wiki_setup.ext = '.md'
 
 let g:vimwiki_list = [wiki_default, wiki_setup]
+
+" ----- jupyter-vim settings -----
+" Note: Visit https://github.com/jupyter-vim/jupyter-vim for further instructions
+
+" Unset the default keybinds
+let g:jupyter_mapkeys = 0
+
+" Set up the Python local leader
+let maplocalleader = "-"
+
+" Connecting and disconnecting to Jupyter instance
+nnoremap <buffer> <localleader>c :JupyterConnect<CR>
+nnoremap <buffer> <localleader>q :JupyterDisconnect<CR>
+
+" Running/importing current file
+nnoremap <buffer> <localleader>R :JupyterRunFile<CR>
+nnoremap <buffer> <localleader>I :PythonImportThisFile<CR>
+
+" Change to directory of current file
+nnoremap <buffer> <localleader>d :JupyterCd %:p:h<CR>
+
+" Send a selection of lines
+nnoremap <buffer> <localleader>X :JupyterSendCell<CR>
+nnoremap <buffer> <localleader>E :JupyterSendRange<CR>
+
+" Debugging maps
+nnoremap <buffer> <localleader>b :PythonSetBreak<CR>
