@@ -185,7 +185,7 @@ def init_default_theme():
     return {
         "margin": [10, 5, 10, 5],
         "border_width": 2,
-        "border_focus": "#fe8019",
+        "border_focus": "#d08770",
         "border_normal": "#4c566a",
         'margin_on_single': 0
     }
@@ -394,7 +394,7 @@ def init_widgets_list(screen_id=1) -> list:
     )
 
     run_on_group = widget.AGroupBox(
-        foreground=colors[4],
+        foreground=colors[11],
         background=colors[10],
         border=colors[10], # Make the border invisible
         font='MesloLGS NF',

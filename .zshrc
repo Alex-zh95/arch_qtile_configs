@@ -433,6 +433,7 @@ alias personal='cp -Rf /personal/* ~'
 alias laptoponly='~/.config/qtile/Laptop_Screen_Only.sh'
 alias screenout='~/.config/qtile/screens.py'
 alias asc='~/.config/qtile/auto_scr.sh'
+alias autoscr='~/.config/qtile/auto_scr.sh'
 
 #create a file called .zshrc-personal and put all your personal aliases
 #in there. They will not be overwritten by skel.
