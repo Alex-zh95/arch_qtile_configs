@@ -13,6 +13,9 @@ set relativenumber
 " Allow syntax-highlighting
 syntax on
 
+" Set encoding
+set encoding=UTF-8
+
 " Set tab key to produce 4 spaces
 set tabstop=4
 set expandtab
@@ -25,11 +28,31 @@ set smartindent
 " Allow mouse action
 set mouse=a
 
+" Pane splits
+set splitbelow
+set splitright
+
+" vsplit with <C-w> <s>, hsplit with <C-w> <v>
+
+" Navigation shortcuts
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-l> :wincmd l<CR>
+
+nmap <silent> <C-a> :wincmd <<CR>
+nmap <silent> <C-d> :wincmd ><CR>
+
+" Activate horizontal terminal
+nmap <silent> <C-x> :term<CR>
 
 call plug#begin()
 
 " Nerd-tree file explorer plug-in
-"Plug 'preservim/nerdtree'
+Plug 'preservim/nerdtree'
+
+" Vim dev-icons
+Plug 'ryanoasis/vim-devicons'
 
 " Add arline and airlinetheme
 Plug 'vim-airline/vim-airline'
@@ -58,15 +81,6 @@ call plug#end()
 " Set the color scheme
 colorscheme nord
 
-" Navigation shortcuts
-nmap <silent> <C-k> :wincmd k<CR>
-nmap <silent> <C-j> :wincmd j<CR>
-nmap <silent> <C-h> :wincmd h<CR>
-nmap <silent> <C-l> :wincmd l<CR>
-
-nmap <silent> <C-a> :wincmd <<CR>
-nmap <silent> <C-d> :wincmd ><CR>
-
 " YouCompleteMe (YCM) options
 " Enable toggle of diagnostics and completion menu with F3
 function Toggle_ycm()
@@ -86,8 +100,10 @@ function Toggle_ycm()
 endfunction
 map <F3> :call Toggle_ycm() <CR>
 
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-"autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" ----- NERDTree settings -----
+nnoremap <C-t> :NERDTreeToggle<CR>
 
 " ----- vim-airline theming -----
 let g:airline_theme='monochrome'
