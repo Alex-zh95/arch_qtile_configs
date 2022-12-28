@@ -13,6 +13,12 @@ set relativenumber
 " Allow syntax-highlighting
 syntax on
 
+" Allow search highlighting
+set hls
+
+" Clear highlights after search
+nnoremap <C-c> :noh<CR>
+
 " Set encoding
 set encoding=UTF-8
 
@@ -58,8 +64,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" Add YCM - need to run ./install.py within the plugin folder
-Plug 'ycm-core/YouCompleteMe'
+" Add LSP server
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Vimtex plugin for LaTeX in-lining
 Plug 'lervag/Vimtex'
@@ -81,29 +87,25 @@ call plug#end()
 " Set the color scheme
 colorscheme nord
 
-" YouCompleteMe (YCM) options
-" Enable toggle of diagnostics and completion menu with F3
-function Toggle_ycm()
-    if g:ycm_show_diagnostics_ui == 0
-        let g:ycm_auto_trigger = 1
-        let g:ycm_show_diagnostics_ui = 1
-        :YcmRestartServer
-        :e
-        :echo "YCM on"
-    elseif g:ycm_show_diagnostics_ui == 1
-        let g:ycm_auto_trigger = 0
-        let g:ycm_show_diagnostics_ui = 0
-        :YcmRestartServer
-        :e
-        :echo "YCM off"
-    endif
-endfunction
-map <F3> :call Toggle_ycm() <CR>
-
-map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
 " ----- NERDTree settings -----
 nnoremap <C-t> :NERDTreeToggle<CR>
+
+" ----- Coc LSP settings -----
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " ----- vim-airline theming -----
 let g:airline_theme='monochrome'
