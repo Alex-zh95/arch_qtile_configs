@@ -69,7 +69,7 @@ reiserfsprogs
 rp-pppoe
 rsync
 rxvt-unicode-terminfo
-screen
+#screen
 sdparm
 sg3_utils
 smartmontools
@@ -112,6 +112,13 @@ wget
 xorg-server
 xorg-apps
 xorg-xinit
+
+###extras for vim plugins
+# dependencies for coc (LSP for vim)
+nodejs-lts-gallium
+nodejs-nopt
+npm
+semver
 
 ###video
 xf86-input-elographics
@@ -228,11 +235,6 @@ libreoffice-fresh
 
 # GUI for comparing files and folders side-by-side
 meld 
-numlockx
-scrot
-vlc
-
-jq
 
 ###fonts
 adobe-source-sans-fonts
@@ -270,6 +272,10 @@ gnome-keyring
 gparted
 hardinfo-gtk3
 btop
+numlockx
+scrot
+vlc
+jq
 
 # Spell-checkers
 hunspell
@@ -339,13 +345,7 @@ zsh-syntax-highlighting
 #                           ARCOLINUX_REPOS
 ###########################################################################
 
-###applications
-#vivaldi
-#vivaldi-ffmpeg-codecs
-#vivaldi-widevine
-
 ###cursors
-#bibata-cursor-theme-bin
 capitaine-cursors
 
 ###fonts
@@ -377,10 +377,8 @@ downgrade
 grub-customizer
 hardcode-fixer-git
 inxi
-#mintstick-git
 neofetch
 #paru-bin
-#peek
 #pulseaudio-equalizer-ladspa
 python-pyparted
 python-pywal
@@ -423,7 +421,7 @@ yay-bin
 #arcolinux-guake-autostart-git
 #arcolinux-hblock-git
 #arcolinux-keyring
-arcolinux-kvantum-git
+#arcolinux-kvantum-git
 #arcolinux-kvantum-lxqt-git
 #arcolinux-kvantum-plasma-git
 #arcolinux-local-applications-git
@@ -480,25 +478,25 @@ arcolinux-zsh-git
 #                                CALAMARES DEPENDENCIES
 ###########################################################################
 
-ckbcomp
-xkeyboard-config
-upower
-kcoreaddons
-kconfig
-ki18n
-kservice
-kwidgetsaddons
-kpmcore
+#ckbcomp
+#xkeyboard-config
+#upower
+#kcoreaddons
+#kconfig
+#ki18n
+#kservice
+#kwidgetsaddons
+#kpmcore
 #arcolinux-kpmcore
-boost-libs
-libpwquality
-squashfs-tools
-plasma-framework
-hwinfo
-qt5-xmlpatterns
-adobe-source-han-sans-jp-fonts
-adobe-source-han-sans-kr-fonts
-adobe-source-han-sans-cn-fonts
+#boost-libs
+#libpwquality
+#squashfs-tools
+#plasma-framework
+#hwinfo
+#qt5-xmlpatterns
+#adobe-source-han-sans-jp-fonts
+#adobe-source-han-sans-kr-fonts
+#adobe-source-han-sans-cn-fonts
 
 ###########################################################################
 #                                DISPLAY MANAGERS
@@ -509,30 +507,17 @@ sddm
 arcolinux-sddm-simplicity-git
 
 ###########################################################################
-#                         PICOM OR COMPTON
-###########################################################################
-
-# via Arco repos - modified picom for animated window movements + improved transparency
-picom-jonaburg-git
-
-###########################################################################
 #                         GENERAL DESKTOP RELATED
 ###########################################################################
 
 # Enable volume icon widget
 volumeicon 
 
-###########################################################################
-#                         ARCOLINUX ISO SPECIFIC
-###########################################################################
+# via Arco repos - modified picom for animated window movements + improved transparency
+picom-jonaburg-git
 
-###lx-applications
-#GUI application for theming
+# For general theming (e.g. GTK) including preview
 lxappearance 
-#lxappearance-gtk3
-#lxappearance-obconf
-#lxappearance-obconf-gtk3
-#lxrandr
 
 ###########################################################################
 #                                XFCE
@@ -544,54 +529,11 @@ tumbler
 xfce4-appfinder
 xfce4-panel
 xfce4-power-manager
-#xfce4-session
 xfce4-settings
-#xfce4-terminal
-#xfconf
-#xfdesktop
-#xfwm4
-#xfwm4-themes
-
-### xfce4-goodies group content
-# https://www.archlinux.org/groups/x86_64/xfce4-goodies/
-#mousepad
-#orage
-#parole
 ristretto
 thunar-archive-plugin
 thunar-media-tags-plugin
-#xfburn
-#xfce4-artwork
-#xfce4-battery-plugin
-#xfce4-clipman-plugin
-#xfce4-cpufreq-plugin
-#xfce4-cpugraph-plugin
-#xfce4-datetime-plugin
-#xfce4-dict
-#xfce4-diskperf-plugin
-#xfce4-eyes-plugin
-#xfce4-fsguard-plugin
-#xfce4-genmon-plugin
-#xfce4-mailwatch-plugin
-#xfce4-mount-plugin
-#xfce4-mpc-plugin
-#xfce4-netload-plugin
-#xfce4-notes-plugin
-#xfce4-notifyd
-#xfce4-pulseaudio-plugin
-#xfce4-screensaver
 xfce4-screenshooter
-#xfce4-sensors-plugin
-#xfce4-smartbookmark-plugin
-#xfce4-systemload-plugin
-#xfce4-taskmanager
-#xfce4-time-out-plugin
-#xfce4-timer-plugin
-#xfce4-verve-plugin
-#xfce4-wavelan-plugin
-#xfce4-weather-plugin
-#xfce4-whiskermenu-plugin
-#xfce4-xkb-plugin
 
 ###########################################################################
 #                                ISO SPECIFIC
