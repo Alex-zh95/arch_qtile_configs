@@ -48,6 +48,8 @@ nmap <silent> <C-l> :wincmd l<CR>
 
 nmap <silent> <C-a> :wincmd <<CR>
 nmap <silent> <C-d> :wincmd ><CR>
+nmap <silent> <C-w> :wincmd +<CR>
+nmap <silent> <C-s> :wincmd -<CR>
 
 " Activate horizontal terminal
 nmap <silent> <C-x> :term<CR>
