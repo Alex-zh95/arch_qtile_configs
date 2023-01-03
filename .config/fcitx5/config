@@ -1,0 +1,64 @@
+[Hotkey]
+# Enumerate when press trigger key repeatedly
+EnumerateWithTriggerKeys=False
+# Skip first input method while enumerating
+EnumerateSkipFirst=False
+# Enumerate Input Method Group Forward
+EnumerateGroupForwardKeys=
+# Enumerate Input Method Group Backward
+EnumerateGroupBackwardKeys=
+# Eingabemethode aktivieren
+ActivateKeys=
+# Eingabemethode deaktivieren
+DeactivateKeys=
+# Vorgabe für vorherige Seite
+PrevPage=
+# Vorgabe für nächste Seite
+NextPage=
+# Default Previous Candidate
+PrevCandidate=
+# Default Next Candidate
+NextCandidate=
+# Toggle embedded preedit
+TogglePreedit=
+
+[Hotkey/TriggerKeys]
+0=Control+Alt+space
+
+[Hotkey/AltTriggerKeys]
+0=Shift_L
+
+[Hotkey/EnumerateForwardKeys]
+0=Control+Alt+space
+
+[Hotkey/EnumerateBackwardKeys]
+0=Control+Alt+Shift+space
+
+[Behavior]
+# Per Voreinstellung aktiviert
+ActiveByDefault=False
+# Share Input State
+ShareInputState=No
+# Show preedit in application
+PreeditEnabledByDefault=True
+# Hinweis zur Eingabemethode zeigen, nachdem sie gewechselt wurde
+ShowInputMethodInformation=True
+# Show Input Method Information when changing focus
+showInputMethodInformationWhenFocusIn=True
+# Show compact input method information
+CompactInputMethodInformation=True
+# Show first input method information
+ShowFirstInputMethodInformation=True
+# Standard Seitengröße
+DefaultPageSize=10
+# Override Xkb Option
+OverrideXkbOption=False
+# Custom Xkb Option
+CustomXkbOption=
+# Force Enabled Addons
+EnabledAddons=
+# Force Disabled Addons
+DisabledAddons=
+# Preload input method to be used by default
+PreloadInputMethod=True
+
