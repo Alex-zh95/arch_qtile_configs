@@ -34,6 +34,9 @@ set smartindent
 " Allow mouse action
 set mouse=a
 
+" Set local leader key 
+let maplocalleader = ","
+
 " Pane splits
 set splitbelow
 set splitright
@@ -53,6 +56,9 @@ nmap <silent> <C-s> :wincmd -<CR>
 
 " Activate horizontal terminal
 nmap <silent> <C-x> :term<CR>
+
+" Terminal normal mode
+tnoremap <silent> <C-n> <C-w>N
 
 call plug#begin()
 
@@ -114,8 +120,13 @@ let g:airline_theme='monochrome'
 
 " ----- VimTex settings -----
 let g:tex_flavor='latex'
-"let g:vimtex_view_general_viewer='zathura'
-"let g:vimtex_quickfix_mode=0
+let g:vimtex_view_method='zathura'
+let g:vimtex_view_general_viewer='okular'
+
+" Default engine from latexmk is pdflatex 
+" Press <localleader>ll to start/stop compilation
+" Press <localleader>lc to clear aux files
+let g:vimtex_compiler_method='latexmk' 
 
 " ----- Vimwiki settings -----
 "  Access vim-wiki by <leader>ws (default to \ws)
@@ -136,9 +147,6 @@ let g:vimwiki_list = [wiki_default, wiki_setup]
 
 " Unset the default keybinds
 let g:jupyter_mapkeys = 0
-
-" Set up the Python local leader
-let maplocalleader = "-"
 
 " Connecting and disconnecting to Jupyter instance
 nnoremap <buffer> <localleader>c :JupyterConnect<CR>
